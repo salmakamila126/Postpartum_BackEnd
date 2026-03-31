@@ -1,0 +1,4002 @@
+{
+  "info": {
+    "_postman_id": "e5ee67bf-58c8-4ee1-99c9-7af3b3813201",
+    "name": "Postpartum BE API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52048007",
+    "_collection_link": "https://go.postman.co/collection/52048007-e5ee67bf-58c8-4ee1-99c9-7af3b3813201?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Register",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Audrey\",\r\n  \"birth_date\": \"2007-13\",\r\n  \"email\": \"audrey@gmail.com\",\r\n  \"password\": \"123456789\",\r\n  \"confirm_password\": \"123456789\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "register"
+              ]
+            },
+            "description": "### Description\n\nThis endpoint is used to register a new user account for the postpartum monitoring system.  \nAuthorization  \nNo authorization required.\n\n### Request Body\n\n- name (string, required): user full name.\n    \n- birth_date (string, required): delivery date in YYYY-MM-DD format.\n    \n- email (string, required): registered user email.\n    \n- password (string, required): minimum 8 characters.\n    \n- confirm_password (string, required): must match password.\n    \n\n### Response Status Code\n\n- 201 Created: user registered successfully and tokens returned.\n    \n- 400 Bad Request: invalid request body, invalid birth date format, password mismatch, or email already registered.\n    \n\n### Test\n\n- Register with valid data.\n    \n- Register with existing email.\n    \n- Register with invalid birth date format.\n    \n- Register with mismatched password confirmation."
+          },
+          "response": [
+            {
+              "name": "success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Audrey\",\r\n  \"birth_date\": \"2007-03-13\",\r\n  \"email\": \"audrey@gmail.com\",\r\n  \"password\": \"12345678\",\r\n  \"confirm_password\": \"12345678\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/auth/register",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 29 Mar 2026 18:04:03 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "413"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"user\": {\n            \"name\": \"Audrey\",\n            \"email\": \"audrey@gmail.com\",\n            \"birth_date\": \"\"\n        },\n        \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImF1ZHJleUBnbWFpbC5jb20iLCJleHAiOjE3NzQ4MDgzNDMsIm5hbWUiOiJBdWRyZXkiLCJyb2xlIjoidXNlciIsInVzZXJfaWQiOiIxMTVjMGYyMy1jYjUwLTQ2MGUtOWZlOS1hN2M3MzZjOTJmMjkifQ.pzUcDFvmOPM2LOUCpJ2euhcz-QlXuJHdsk05Zs79VXs\",\n        \"refresh_token\": \"939b518e-839d-4087-a0e7-11c036346e9f\"\n    }\n}"
+            },
+            {
+              "name": "error invalid password",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Audrey\",\r\n  \"birth_date\": \"2007-03-13\",\r\n  \"email\": \"audrey@gmail.com\",\r\n  \"password\": \"1234567\",\r\n  \"confirm_password\": \"1234567\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/auth/register",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 29 Mar 2026 18:06:14 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "48"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"invalid request body\"\n}"
+            },
+            {
+              "name": "error email already register",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Audrey\",\r\n  \"birth_date\": \"2007-03-13\",\r\n  \"email\": \"audrey@gmail.com\",\r\n  \"password\": \"12345678\",\r\n  \"confirm_password\": \"12345678\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/auth/register",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 29 Mar 2026 18:20:14 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "52"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"email already registered\"\n}"
+            },
+            {
+              "name": "error invalid birth_date format",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Audrey\",\r\n  \"birth_date\": \"2007-13\",\r\n  \"email\": \"audrey@gmail.com\",\r\n  \"password\": \"123456789\",\r\n  \"confirm_password\": \"123456789\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/auth/register",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 29 Mar 2026 18:21:07 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "70"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"invalid birth_date format - use YYYY-MM-DD\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Login",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"audrey@gmail.com\",\r\n  \"password\": \"12345678\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "login"
+              ]
+            },
+            "description": "### Description\n\nThis endpoint is used to authenticate a registered user and return access and refresh tokens.  \nAuthorization  \nNo authorization required.\n\n### Request Body\n\n- email (string, required): registered email.\n    \n- password (string, required): account password.\n    \n\n### Response Status Code\n\n- 200 OK: login successful.\n    \n- 400 Bad Request: invalid request body.\n    \n- 401 Unauthorized: invalid email or password.\n    \n\n### Test\n\n- Login with valid credentials.\n    \n- Login with wrong password.\n    \n- Login with unregistered email."
+          },
+          "response": [
+            {
+              "name": "success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"email\": \"audrey@gmail.com\",\r\n  \"password\": \"12345678\"\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/auth/login",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 29 Mar 2026 18:14:17 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "433"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"user\": {\n            \"name\": \"Audrey\",\n            \"email\": \"audrey@gmail.com\",\n            \"birth_date\": \"2007-03-13T00:00:00Z\"\n        },\n        \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImF1ZHJleUBnbWFpbC5jb20iLCJleHAiOjE3NzQ4MDg5NTcsIm5hbWUiOiJBdWRyZXkiLCJyb2xlIjoidXNlciIsInVzZXJfaWQiOiIxMTVjMGYyMy1jYjUwLTQ2MGUtOWZlOS1hN2M3MzZjOTJmMjkifQ.cXT-L1f7KwTot4_UMpwjr25qmW4Ce2hm4NiOe0SN08o\",\n        \"refresh_token\": \"af23c8c6-24f6-4b36-82d9-227b01144624\"\n    }\n}"
+            },
+            {
+              "name": "error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"email\": \"audrey@gmail.com\",\r\n  \"password\": \"1234567\"\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/auth/login",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 29 Mar 2026 18:14:51 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "53"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"invalid email or password\"\n}"
+            },
+            {
+              "name": "unregistered email",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"email\": \"eline@gmail.com\",\r\n  \"password\": \"12345678\"\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/auth/login",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 02:59:14 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "53"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"invalid email or password\"\n}"
+            },
+            {
+              "name": "invalid request body",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"email\": \"eline@gmail.com\",\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/auth/login",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 03:00:58 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "48"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"invalid request body\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Refresh",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImF1ZHJleUBnbWFpbC5jb20iLCJleHAiOjE3NzQ4NDEyNjIsIm5hbWUiOiJBdWRyZXkiLCJyb2xlIjoidXNlciIsInVzZXJfaWQiOiIxMTVjMGYyMy1jYjUwLTQ2MGUtOWZlOS1hN2M3MzZjOTJmMjkifQ.2YsJhvlwy9XN8zonVmLTYHpv8ZOjTM_9Nzbux-YUkbI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"refresh_token\": \"46cb3fc9-b581-4903-ad4a-e32e2d5bbffc\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/auth/refresh",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "refresh"
+              ]
+            },
+            "description": "### Description\n\n- This endpoint is used to generate a new access token and refresh token.\n    \n- Authorization  \n    No authorization required.\n    \n\n### Request Body\n\n- refresh_token (string, required): valid refresh token from login or register.\n    \n\n### Response Status Code\n\n- 200 OK: token refreshed successfully.\n    \n- 400 Bad Request: refresh token is required.\n    \n- 401 Unauthorized: invalid or expired refresh token.\n    \n\n### Test\n\n- Refresh with valid refresh token.\n    \n- Refresh with empty token.\n    \n- Refresh with expired token."
+          },
+          "response": [
+            {
+              "name": "invalid",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"refresh_token\": \"e475b3bf-237d-4d94-bcdd-ccf80bd89cda\"\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/auth/refresh",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "refresh"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 03:07:06 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "49"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"invalid refresh token\"\n}"
+            },
+            {
+              "name": "empty token",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"refresh_token: \" \"\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/auth/refresh",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "refresh"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 03:09:05 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "53"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"refresh_token is required\"\n}"
+            },
+            {
+              "name": "success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"refresh_token\": \"46cb3fc9-b581-4903-ad4a-e32e2d5bbffc\"\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/auth/refresh",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "refresh"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 03:14:16 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "391"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"user\": {\n            \"name\": \"\",\n            \"email\": \"\",\n            \"birth_date\": \"\"\n        },\n        \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImF1ZHJleUBnbWFpbC5jb20iLCJleHAiOjE3NzQ4NDEzNTYsIm5hbWUiOiJBdWRyZXkiLCJyb2xlIjoidXNlciIsInVzZXJfaWQiOiIxMTVjMGYyMy1jYjUwLTQ2MGUtOWZlOS1hN2M3MzZjOTJmMjkifQ.srv21DK-Ny-mPIJ6JIBYt7v5RvXTO1zgfJzJgizv0Ug\",\n        \"refresh_token\": \"394c77e7-1f65-4a9a-9d3e-b043bc96ce03\"\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Logout",
+      "item": [
+        {
+          "name": "Logout",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"refresh_token\": \"99420099-7bd6-40ae-b18c-fd5ee5a21d65\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "### Description\n\n- This endpoint is used to revoke the current refresh token and log the user out.\n    \n- Authorization  \n    No authorization required.\n    \n\n### Request Body\n\n- refresh_token (string, required): refresh token to revoke.\n    \n\n### Response Status Code\n\n- 200 OK: logout successful.\n    \n- 400 Bad Request: refresh token is required.\n    \n\n### Test\n\n- Logout with valid refresh token.\n    \n- Logout without refresh token."
+          },
+          "response": [
+            {
+              "name": "valid token",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"refresh_token\": \"99420099-7bd6-40ae-b18c-fd5ee5a21d65\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/auth/logout",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "logout"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 03:18:40 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "49"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": \"logged out successfully\"\n}"
+            },
+            {
+              "name": "without token",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"refresh_token\": \"\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/auth/logout",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "logout"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 03:19:39 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "53"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"refresh_token is required\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Profile",
+      "item": [
+        {
+          "name": "Profile",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpvc2VzcGhAZ21haWwuY29tIiwiZXhwIjoxNzc0NzU0MTc1LCJuYW1lIjoiSm9zZXBoIiwicm9sZSI6InVzZXIiLCJ1c2VyX2lkIjoiOThlNjI5YTMtODY3YS00NjM3LWEyNTQtMjFjM2QxNmRjOGJlIn0.KvghpgSabWCugJAVSxxCcg1YhrSEzVo1MV7kvV9N6YY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"Josesph@gmail.com\",\r\n  \"password\": \"12345678\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/user/profile",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "user",
+                "profile"
+              ]
+            },
+            "description": "### Description\n\n- This endpoint is used to retrieve the authenticated user profile.\n    \n- Authorization  \n    Bearer token required.\n    \n\n### Request Body\n\n- No request body.\n    \n\n### Response Status Code\n\n- 200 OK: profile retrieved successfully.\n    \n- 401 Unauthorized: missing or invalid token.\n    \n\n### Test\n\n- Get profile with valid token.\n    \n- Get profile without token."
+          },
+          "response": [
+            {
+              "name": "success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"email\": \"audrey@gmail.com\",\r\n  \"password\": \"12345678\"\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/user/profile",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "user",
+                    "profile"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 04:20:34 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "104"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"name\": \"Audrey\",\n        \"email\": \"audrey@gmail.com\",\n        \"birth_date\": \"2007-03-13T00:00:00Z\"\n    }\n}"
+            },
+            {
+              "name": "invalid token",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"email\": \"audrey@gmail.com\",\r\n  \"password\": \"12345678\"\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/user/profile",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "user",
+                    "profile"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 04:21:33 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "52"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"invalid or expired token\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpvc2VzcGhAZ21haWwuY29tIiwiZXhwIjoxNzc0NzU0MTc1LCJuYW1lIjoiSm9zZXBoIiwicm9sZSI6InVzZXIiLCJ1c2VyX2lkIjoiOThlNjI5YTMtODY3YS00NjM3LWEyNTQtMjFjM2QxNmRjOGJlIn0.KvghpgSabWCugJAVSxxCcg1YhrSEzVo1MV7kvV9N6YY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Jay\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/user/profile",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "user",
+                "profile"
+              ]
+            },
+            "description": "### Description\n\n- This endpoint is used to update the authenticated user profile name.\n    \n- Authorization  \n    Bearer token required.\n    \n\n### Request Body\n\n- name (string, optional): updated user name.\n    \n\n### Response Status Code\n\n- 200 OK: profile updated successfully.\\]\n    \n- 400 Bad Request: invalid request body or user not found.\n    \n- 401 Unauthorized: missing or invalid token\n    \n\n### Test\n\n- Update profile with valid name.\n    \n- Update profile with invalid body.\n    \n- Update profile without token."
+          },
+          "response": [
+            {
+              "name": "exp token",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"elaine\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/user/profile",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "user",
+                    "profile"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 04:23:07 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "52"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"invalid or expired token\"\n}"
+            },
+            {
+              "name": "success",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"elaine\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/user/profile",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "user",
+                    "profile"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 04:24:26 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "104"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"name\": \"elaine\",\n        \"email\": \"audrey@gmail.com\",\n        \"birth_date\": \"2007-03-13T00:00:00Z\"\n    }\n}"
+            },
+            {
+              "name": "invalid body",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"nam: \"elaine\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/user/profile",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "user",
+                    "profile"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 04:25:23 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "48"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"invalid request body\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Sleep Tracking",
+      "item": [
+        {
+          "name": "Sleep Today Manual",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImF1ZHJleUBnbWFpbC5jb20iLCJleHAiOjE3NzQ4NDUyNzAsIm5hbWUiOiJBdWRyZXkiLCJyb2xlIjoidXNlciIsInVzZXJfaWQiOiIxMTVjMGYyMy1jYjUwLTQ2MGUtOWZlOS1hN2M3MzZjOTJmMjkifQ.kMW_pe4VQgwLmqUT9YFdt2GAlrnPQWVk3oryVsBGQL8",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"start\": \"2026-03-30T08:00:00+07:00\",\r\n  \"end\": \"2026-03-30T09:30:00+07:00\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/sleep/manual",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "sleep",
+                "manual"
+              ]
+            },
+            "description": "### Description\n\n- This endpoint is used to manually add a baby sleep session for today.\n    \n- Authorization  \n    Bearer token required.\n    \n\n### Request Body\n\n- start (string, required): start time in RFC3339 format.\n    \n- end (string, required): end time in RFC3339 format.\n    \n\n### Response Status Code\n\n- 200 OK: sleep session added successfully.\n    \n- 400 Bad Request: invalid request body, invalid time format, end before start, overlap, maximum sessions reached, or manual input not for today.\n    \n- 401 Unauthorized: missing or invalid token.\n    \n\n### Test\n\n- Add valid manual session for today.\n    \n- Add invalid time format.\n    \n- Add end time earlier than start.\n    \n- Add session for past day."
+          },
+          "response": [
+            {
+              "name": "not for today",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"start\": \"2007-03-13T08:00:00+07:00\",\r\n  \"end\": \"2026-03-29T09:30:00+07:00\"\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/sleep/manual",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "sleep",
+                    "manual"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 04:26:49 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "63"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"manual input only allowed for today\"\n}"
+            },
+            {
+              "name": "earlier than start",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"start\": \"2026-03-30T08:00:00+07:00\",\r\n  \"end\": \"2026-03-30T07:30:00+07:00\"\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/sleep/manual",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "sleep",
+                    "manual"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 04:31:03 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "51"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"end must be after start\"\n}"
+            },
+            {
+              "name": "time format",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"start\": \"2026-03-30T08:00:00+07:00\",\r\n  \"end: \"2026-03-30T09:30:00+07:00\"\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/sleep/manual",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "sleep",
+                    "manual"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 04:32:56 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "48"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"invalid request body\"\n}"
+            },
+            {
+              "name": "success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"start\": \"2026-03-30T08:00:00+07:00\",\r\n  \"end\": \"2026-03-30T09:30:00+07:00\"\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/sleep/manual",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "sleep",
+                    "manual"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 04:34:09 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "45"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": \"sleep session added\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Sleep Bulk Backdate",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpvc2VzcGhAZ21haWwuY29tIiwiZXhwIjoxNzc0NzU0MTc1LCJuYW1lIjoiSm9zZXBoIiwicm9sZSI6InVzZXIiLCJ1c2VyX2lkIjoiOThlNjI5YTMtODY3YS00NjM3LWEyNTQtMjFjM2QxNmRjOGJlIn0.KvghpgSabWCugJAVSxxCcg1YhrSEzVo1MV7kvV9N6YY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"date\": \"2026-03-26\",\r\n  \"sessions\": [\r\n    {\r\n      \"start\": \"2026-03-26T01:00:00+07:00\",\r\n      \"end\": \"2026-03-26T02:00:00+07:00\"\r\n    },\r\n    {\r\n      \"start\": \"2026-03-26T05:00:00+07:00\",\r\n      \"end\": \"2026-03-26T06:30:00+07:00\"\r\n    }\r\n  ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/sleep/bulk",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "sleep",
+                "bulk"
+              ]
+            },
+            "description": "### Description\n\n- This endpoint is used to save backdated baby sleep sessions for a past date in a single submission.\n    \n- Authorization  \n    Bearer token required.\n    \n\n### Request Body\n\n- date (string, required): target date in YYYY-MM-DD.\n    \n- sessions (array, required): one or more sleep sessions for the selected date.\n    \n\n### Response Status Code\n\n- 200 OK: bulk sleep sessions added successfully.\n    \n- 400 Bad Request: invalid request body, invalid date, future/today date not allowed, data already exists, overlap, invalid time, or maximum sessions exceeded.\n    \n- 401 Unauthorized: missing or invalid token.\n    \n\n### Test\n\n- Save valid backdate sessions.\n    \n- Save backdate twice on same date.\n    \n- Save backdate for today.\n    \n- Save overlapping backdate sessions."
+          },
+          "response": [
+            {
+              "name": "success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"date\": \"2026-03-26\",\r\n  \"sessions\": [\r\n    {\r\n      \"start\": \"2026-03-26T01:00:00+07:00\",\r\n      \"end\": \"2026-03-26T02:00:00+07:00\"\r\n    },\r\n    {\r\n      \"start\": \"2026-03-26T05:00:00+07:00\",\r\n      \"end\": \"2026-03-26T06:30:00+07:00\"\r\n    }\r\n  ]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/sleep/bulk",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "sleep",
+                    "bulk"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 04:36:32 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "51"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": \"bulk sleep sessions added\"\n}"
+            },
+            {
+              "name": "twice for the same date",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"date\": \"2026-03-26\",\r\n  \"sessions\": [\r\n    {\r\n      \"start\": \"2026-03-26T01:00:00+07:00\",\r\n      \"end\": \"2026-03-26T02:00:00+07:00\"\r\n    },\r\n    {\r\n      \"start\": \"2026-03-26T05:00:00+07:00\",\r\n      \"end\": \"2026-03-26T06:30:00+07:00\"\r\n    }\r\n  ]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/sleep/bulk",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "sleep",
+                    "bulk"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 04:37:23 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "61"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"data already exists for this date\"\n}"
+            },
+            {
+              "name": "backdate for today",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"date\": \"2026-03-30\",\r\n  \"sessions\": [\r\n    {\r\n      \"start\": \"2026-03-26T01:00:00+07:00\",\r\n      \"end\": \"2026-03-26T02:00:00+07:00\"\r\n    },\r\n    {\r\n      \"start\": \"2026-03-26T05:00:00+07:00\",\r\n      \"end\": \"2026-03-26T06:30:00+07:00\"\r\n    }\r\n  ]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/sleep/bulk",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "sleep",
+                    "bulk"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 04:38:15 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "66"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"bulk input only allowed for past dates\"\n}"
+            },
+            {
+              "name": "overlapping",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"date\": \"2026-03-31\",\r\n  \"sessions\": [\r\n    {\r\n      \"start\": \"2026-03-26T01:00:00+07:00\",\r\n      \"end\": \"2026-03-26T02:00:00+07:00\"\r\n    },\r\n    {\r\n      \"start\": \"2026-03-26T05:00:00+07:00\",\r\n      \"end\": \"2026-03-26T06:30:00+07:00\"\r\n    }\r\n  ]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/sleep/bulk",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "sleep",
+                    "bulk"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 04:39:00 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "66"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"bulk input only allowed for past dates\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Sleep Daily",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpvc2VzcGhAZ21haWwuY29tIiwiZXhwIjoxNzc0NzU0MTc1LCJuYW1lIjoiSm9zZXBoIiwicm9sZSI6InVzZXIiLCJ1c2VyX2lkIjoiOThlNjI5YTMtODY3YS00NjM3LWEyNTQtMjFjM2QxNmRjOGJlIn0.KvghpgSabWCugJAVSxxCcg1YhrSEzVo1MV7kvV9N6YY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"date\": \"2026-03-27\",\r\n  \"sessions\": [\r\n    {\r\n      \"start\": \"2026-03-27T01:00:00+07:00\",\r\n      \"end\": \"2026-03-27T02:00:00+07:00\"\r\n    },\r\n    {\r\n      \"start\": \"2026-03-27T05:00:00+07:00\",\r\n      \"end\": \"2026-03-27T06:30:00+07:00\"\r\n    }\r\n  ]\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/sleep/daily?date=2026-03-29",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "sleep",
+                "daily"
+              ],
+              "query": [
+                {
+                  "key": "date",
+                  "value": "2026-03-29"
+                }
+              ]
+            },
+            "description": "### Description  \n\n- This endpoint is used to retrieve baby sleep summary and session list for a selected date.\n    \n- Authorization  \n    Bearer token required.\n    \n\n### Request Body\n\n- No request body.\n    \n\n### Response Status Code\n\n- 200 OK: daily sleep retrieved successfully.\n    \n- 400 Bad Request: missing date query or invalid date format.\n    \n- 401 Unauthorized: missing or invalid token.\n    \n\n### Test\n\n- Get daily sleep with valid date.\n    \n- Get daily sleep without date.\n    \n- Get daily sleep with invalid date format"
+          },
+          "response": [
+            {
+              "name": "success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"date\": \"2026-03-27\",\r\n  \"sessions\": [\r\n    {\r\n      \"start\": \"2026-03-27T01:00:00+07:00\",\r\n      \"end\": \"2026-03-27T02:00:00+07:00\"\r\n    },\r\n    {\r\n      \"start\": \"2026-03-27T05:00:00+07:00\",\r\n      \"end\": \"2026-03-27T06:30:00+07:00\"\r\n    }\r\n  ]\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/sleep/daily?date=2026-03-30",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "sleep",
+                    "daily"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": "2026-03-30"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 04:40:29 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "144"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"date\": \"2026-03-30\",\n        \"total_sleep_minutes\": 0,\n        \"total_sessions\": 0,\n        \"avg_sleep_minutes\": 0,\n        \"sessions\": [],\n        \"is_sleeping\": false\n    }\n}"
+            },
+            {
+              "name": "without date",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"date\": \"2026-03-27\",\r\n  \"sessions\": [\r\n    {\r\n      \"start\": \"2026-03-27T01:00:00+07:00\",\r\n      \"end\": \"2026-03-27T02:00:00+07:00\"\r\n    },\r\n    {\r\n      \"start\": \"2026-03-27T05:00:00+07:00\",\r\n      \"end\": \"2026-03-27T06:30:00+07:00\"\r\n    }\r\n  ]\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/sleep/daily?date=",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "sleep",
+                    "daily"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 04:41:37 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "71"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"query param 'date' is required (YYYY-MM-DD)\"\n}"
+            },
+            {
+              "name": "invalid date format",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"date\": \"2026-03-27\",\r\n  \"sessions\": [\r\n    {\r\n      \"start\": \"2026-03-27T01:00:00+07:00\",\r\n      \"end\": \"2026-03-27T02:00:00+07:00\"\r\n    },\r\n    {\r\n      \"start\": \"2026-03-27T05:00:00+07:00\",\r\n      \"end\": \"2026-03-27T06:30:00+07:00\"\r\n    }\r\n  ]\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/sleep/daily?date=2026-13-30",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "sleep",
+                    "daily"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": "2026-13-30"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 04:42:41 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "64"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"invalid date format - use YYYY-MM-DD\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Sleep History",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpvc2VzcGhAZ21haWwuY29tIiwiZXhwIjoxNzc0NzU0MTc1LCJuYW1lIjoiSm9zZXBoIiwicm9sZSI6InVzZXIiLCJ1c2VyX2lkIjoiOThlNjI5YTMtODY3YS00NjM3LWEyNTQtMjFjM2QxNmRjOGJlIn0.KvghpgSabWCugJAVSxxCcg1YhrSEzVo1MV7kvV9N6YY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"date\": \"2026-03-27\",\r\n  \"sessions\": [\r\n    {\r\n      \"start\": \"2026-03-27T01:00:00+07:00\",\r\n      \"end\": \"2026-03-27T02:00:00+07:00\"\r\n    },\r\n    {\r\n      \"start\": \"2026-03-27T05:00:00+07:00\",\r\n      \"end\": \"2026-03-27T06:30:00+07:00\"\r\n    }\r\n  ]\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/sleep/history",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "sleep",
+                "history"
+              ]
+            },
+            "description": "### Description\n\n- This endpoint is used to retrieve all saved baby sleep records for the authenticated user.\n    \n- Authorization  \n    Bearer token required.\n    \n\n### Request Body\n\n- No request body.\n    \n\n### Response Status Code\n\n- 200 OK: sleep history retrieved successfully.\n    \n- 401 Unauthorized: missing or invalid token.\n    \n\n### Test\n\n- Get sleep history with valid token.\n    \n- Get sleep history without token."
+          },
+          "response": [
+            {
+              "name": "success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"date\": \"2026-03-27\",\r\n  \"sessions\": [\r\n    {\r\n      \"start\": \"2026-03-27T01:00:00+07:00\",\r\n      \"end\": \"2026-03-27T02:00:00+07:00\"\r\n    },\r\n    {\r\n      \"start\": \"2026-03-27T05:00:00+07:00\",\r\n      \"end\": \"2026-03-27T06:30:00+07:00\"\r\n    }\r\n  ]\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/sleep/history",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "sleep",
+                    "history"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 04:48:05 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "543"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"sessions\": [\n            {\n                \"id\": \"82a586ba-0996-4d01-b16d-0c179f72c09d\",\n                \"sleep_time\": \"08:00\",\n                \"wake_time\": \"09:30\",\n                \"duration_minutes\": 90,\n                \"is_backdate\": false,\n                \"created_at\": \"2026-03-30T04:34:09.335Z\"\n            },\n            {\n                \"id\": \"0b9c2450-d366-420d-a9db-e234abd97348\",\n                \"sleep_time\": \"05:00\",\n                \"wake_time\": \"06:30\",\n                \"duration_minutes\": 90,\n                \"is_backdate\": true,\n                \"created_at\": \"2026-03-30T04:36:32.521Z\"\n            },\n            {\n                \"id\": \"d5d2027b-4e48-4ec3-8d24-4f62eb5dc75c\",\n                \"sleep_time\": \"01:00\",\n                \"wake_time\": \"02:00\",\n                \"duration_minutes\": 60,\n                \"is_backdate\": true,\n                \"created_at\": \"2026-03-30T04:36:32.521Z\"\n            }\n        ]\n    }\n}"
+            },
+            {
+              "name": "without token",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"date\": \"2026-03-27\",\r\n  \"sessions\": [\r\n    {\r\n      \"start\": \"2026-03-27T01:00:00+07:00\",\r\n      \"end\": \"2026-03-27T02:00:00+07:00\"\r\n    },\r\n    {\r\n      \"start\": \"2026-03-27T05:00:00+07:00\",\r\n      \"end\": \"2026-03-27T06:30:00+07:00\"\r\n    }\r\n  ]\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/sleep/history",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "sleep",
+                    "history"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 04:48:42 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "56"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"authorization header missing\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Sleep Predict",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpvc2VzcGhAZ21haWwuY29tIiwiZXhwIjoxNzc0NzU0MTc1LCJuYW1lIjoiSm9zZXBoIiwicm9sZSI6InVzZXIiLCJ1c2VyX2lkIjoiOThlNjI5YTMtODY3YS00NjM3LWEyNTQtMjFjM2QxNmRjOGJlIn0.KvghpgSabWCugJAVSxxCcg1YhrSEzVo1MV7kvV9N6YY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"date\": \"2026-03-27\",\r\n  \"sessions\": [\r\n    {\r\n      \"start\": \"2026-03-27T01:00:00+07:00\",\r\n      \"end\": \"2026-03-27T02:00:00+07:00\"\r\n    },\r\n    {\r\n      \"start\": \"2026-03-27T05:00:00+07:00\",\r\n      \"end\": \"2026-03-27T06:30:00+07:00\"\r\n    }\r\n  ]\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/sleep/predict",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "sleep",
+                "predict"
+              ]
+            },
+            "description": "### Description\n\n- This endpoint is used to generate baby sleep and wake predictions based on the latest valid 3-day sleep history.\n    \n- Authorization  \n    Bearer token required.\n    \n\n### Request Body\n\n- No request body.\n    \n\n### Response Status Code\n\n- 200 OK: sleep prediction generated successfully.\n    \n- 400 Bad Request: no data, not enough data, or last session not finished.\n    \n- 401 Unauthorized: missing or invalid token.\n    \n\n### Test\n\n- Request prediction with insufficient data.\n    \n- Request prediction with enough valid 3-day data.\n    \n- Request prediction when latest session is unfinished."
+          },
+          "response": [
+            {
+              "name": "insufficient data",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"date\": \"2026-03-27\",\r\n  \"sessions\": [\r\n    {\r\n      \"start\": \"2026-03-27T01:00:00+07:00\",\r\n      \"end\": \"2026-03-27T02:00:00+07:00\"\r\n    },\r\n    {\r\n      \"start\": \"2026-03-27T05:00:00+07:00\",\r\n      \"end\": \"2026-03-27T06:30:00+07:00\"\r\n    }\r\n  ]\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/sleep/predict",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "sleep",
+                    "predict"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 04:50:13 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "35"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"no data\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Sleep Insight",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpvc2VzcGhAZ21haWwuY29tIiwiZXhwIjoxNzc0NzU0MTc1LCJuYW1lIjoiSm9zZXBoIiwicm9sZSI6InVzZXIiLCJ1c2VyX2lkIjoiOThlNjI5YTMtODY3YS00NjM3LWEyNTQtMjFjM2QxNmRjOGJlIn0.KvghpgSabWCugJAVSxxCcg1YhrSEzVo1MV7kvV9N6YY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"date\": \"2026-03-27\",\r\n  \"sessions\": [\r\n    {\r\n      \"start\": \"2026-03-27T01:00:00+07:00\",\r\n      \"end\": \"2026-03-27T02:00:00+07:00\"\r\n    },\r\n    {\r\n      \"start\": \"2026-03-27T05:00:00+07:00\",\r\n      \"end\": \"2026-03-27T06:30:00+07:00\"\r\n    }\r\n  ]\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/sleep/insight",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "sleep",
+                "insight"
+              ]
+            },
+            "description": "### Description\n\n- This endpoint is used to show today's baby sleep insight based on current activity and prediction result.\n    \n- Authorization  \n    Bearer token required.\n    \n\n### Request Body\n\n- No request body.\n    \n\n### Response bnStatus Code\n\n- 200 OK: insight retrieved successfully.\n    \n- 401 Unauthorized: missing or invalid token.\n    \n\n### Test\n\n- Insight when no sleep record exists today.\n    \n- Insight when baby is currently sleeping.\n    \n- Insight when baby is currently awake.\n    \n- Insight when prediction data is still insufficient."
+          },
+          "response": [
+            {
+              "name": "success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"date\": \"2026-03-27\",\r\n  \"sessions\": [\r\n    {\r\n      \"start\": \"2026-03-27T01:00:00+07:00\",\r\n      \"end\": \"2026-03-27T02:00:00+07:00\"\r\n    },\r\n    {\r\n      \"start\": \"2026-03-27T05:00:00+07:00\",\r\n      \"end\": \"2026-03-27T06:30:00+07:00\"\r\n    }\r\n  ]\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/sleep/insight",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "sleep",
+                    "insight"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 04:51:38 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "92"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"status\": \"empty\",\n        \"message\": \"Belum ada catatan tidur bayi hari ini\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Sleep Start",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpvc2VzcGhAZ21haWwuY29tIiwiZXhwIjoxNzc0NzU0MTc1LCJuYW1lIjoiSm9zZXBoIiwicm9sZSI6InVzZXIiLCJ1c2VyX2lkIjoiOThlNjI5YTMtODY3YS00NjM3LWEyNTQtMjFjM2QxNmRjOGJlIn0.KvghpgSabWCugJAVSxxCcg1YhrSEzVo1MV7kvV9N6YY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Jay\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/sleep/start",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "sleep",
+                "start"
+              ]
+            },
+            "description": "### Description\n\n- This endpoint is used to start a baby sleep session for the current day.\n    \n- Authorization  \n    Bearer token required.\n    \n\n### Request Body\n\n- No request body.\n    \n\n### Response Status Code\n\n- 200 OK: sleep session started.\n    \n- 400 Bad Request: baby already sleeping, maximum sessions reached, or overlap detected.\n    \n- 401 Unauthorized: missing or invalid token.\n    \n\n### Test\n\n- Start sleep when no active session exists.\n    \n- Start sleep when a session is already active."
+          },
+          "response": [
+            {
+              "name": "success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"elaine\"\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/sleep/start",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "sleep",
+                    "start"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 04:54:20 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "47"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": \"sleep session started\"\n}"
+            },
+            {
+              "name": "already active",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"elaine\"\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/sleep/start",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "sleep",
+                    "start"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 04:55:00 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "49"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"baby already sleeping\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Sleep End",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpvc2VzcGhAZ21haWwuY29tIiwiZXhwIjoxNzc0NzU0MTc1LCJuYW1lIjoiSm9zZXBoIiwicm9sZSI6InVzZXIiLCJ1c2VyX2lkIjoiOThlNjI5YTMtODY3YS00NjM3LWEyNTQtMjFjM2QxNmRjOGJlIn0.KvghpgSabWCugJAVSxxCcg1YhrSEzVo1MV7kvV9N6YY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Jay\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/sleep/end",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "sleep",
+                "end"
+              ]
+            },
+            "description": "### Description\n\n- This endpoint is used to end the current active baby sleep session.\n    \n- Authorization  \n    Bearer token required.\n    \n\n### Request Body\n\n- No request body.\n    \n\n### Response Status Code\n\n- 200 OK: sleep session ended.\n    \n- 400 Bad Request: no active sleep session.\n    \n- 401 Unauthorized: missing or invalid token.\n    \n\n### Test\n\n- End active session successfully.\n    \n- End when no active session exists."
+          },
+          "response": [
+            {
+              "name": "success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Jay\"\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/sleep/end",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "sleep",
+                    "end"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 04:57:25 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "45"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": \"sleep session ended\"\n}"
+            },
+            {
+              "name": "no active session exist",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Jay\"\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/sleep/end",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "sleep",
+                    "end"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 04:58:29 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "51"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"no active sleep session\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Sleep Status",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpvc2VzcGhAZ21haWwuY29tIiwiZXhwIjoxNzc0NzU0MTc1LCJuYW1lIjoiSm9zZXBoIiwicm9sZSI6InVzZXIiLCJ1c2VyX2lkIjoiOThlNjI5YTMtODY3YS00NjM3LWEyNTQtMjFjM2QxNmRjOGJlIn0.KvghpgSabWCugJAVSxxCcg1YhrSEzVo1MV7kvV9N6YY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"date\": \"2026-03-27\",\r\n  \"sessions\": [\r\n    {\r\n      \"start\": \"2026-03-27T01:00:00+07:00\",\r\n      \"end\": \"2026-03-27T02:00:00+07:00\"\r\n    },\r\n    {\r\n      \"start\": \"2026-03-27T05:00:00+07:00\",\r\n      \"end\": \"2026-03-27T06:30:00+07:00\"\r\n    }\r\n  ]\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/sleep/status",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "sleep",
+                "status"
+              ]
+            },
+            "description": "### Description\n\n- This endpoint is used to check whether the baby is currently sleeping.\n    \n- Authorization  \n    Bearer token required.\n    \n\n### Request Body\n\n- No request body.\n    \n\n### Response Status Code\n\n- 200 OK: status retrieved successfully.\n    \n- 401 Unauthorized: missing or invalid token.\n    \n\n### Test\n\n- Check status before start.\n    \n- Check status after start."
+          },
+          "response": [
+            {
+              "name": "before start (already wakeup)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"date\": \"2026-03-27\",\r\n  \"sessions\": [\r\n    {\r\n      \"start\": \"2026-03-27T01:00:00+07:00\",\r\n      \"end\": \"2026-03-27T02:00:00+07:00\"\r\n    },\r\n    {\r\n      \"start\": \"2026-03-27T05:00:00+07:00\",\r\n      \"end\": \"2026-03-27T06:30:00+07:00\"\r\n    }\r\n  ]\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/sleep/status",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "sleep",
+                    "status"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 05:00:30 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "42"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"sleeping\": false\n    }\n}"
+            },
+            {
+              "name": "after start (sleeping)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"date\": \"2026-03-27\",\r\n  \"sessions\": [\r\n    {\r\n      \"start\": \"2026-03-27T01:00:00+07:00\",\r\n      \"end\": \"2026-03-27T02:00:00+07:00\"\r\n    },\r\n    {\r\n      \"start\": \"2026-03-27T05:00:00+07:00\",\r\n      \"end\": \"2026-03-27T06:30:00+07:00\"\r\n    }\r\n  ]\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/sleep/status",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "sleep",
+                    "status"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 05:02:49 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "57"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"sleeping\": true,\n        \"start\": \"12:02\"\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Symptom",
+      "item": [
+        {
+          "name": "Symptom Save Today",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpvc2VzcGhAZ21haWwuY29tIiwiZXhwIjoxNzc0NzU0MTc1LCJuYW1lIjoiSm9zZXBoIiwicm9sZSI6InVzZXIiLCJ1c2VyX2lkIjoiOThlNjI5YTMtODY3YS00NjM3LWEyNTQtMjFjM2QxNmRjOGJlIn0.KvghpgSabWCugJAVSxxCcg1YhrSEzVo1MV7kvV9N6YY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"date\": \"2026-03-29\",\r\n  \"bleedings\": [\r\n    {\r\n      \"pad_usage\": \"<2h\",\r\n      \"clot_size\": \"large_coin\",\r\n      \"blood_color\": \"normal_red\",\r\n      \"smell\": \"mild\"\r\n    }\r\n  ],\r\n  \"physical\": {\r\n    \"temperature\": \">=38\",\r\n    \"dizziness\": 4,\r\n    \"headache\": 4,\r\n    \"weakness\": 4,\r\n    \"calf_pain\": 5,\r\n    \"abdominal_pain\": 5,\r\n    \"wound\": [\"bercak_darah\"],\r\n    \"urine_problems\": [\"nyeri_bak\"],\r\n    \"urine_color\": \"dark\",\r\n    \"breast_problems\": [\"bengkak\", \"kemerahan\", \"nyeri_puting\"],\r\n    \"swelling\": [\"wajah\"],\r\n    \"other_symptoms\": [\"kejang\", \"penglihatan_kabur\", \"muntah\", \"nyeri_ulu_hati\", \"nyeri_dada\", \"sesak_napas\"]\r\n  },\r\n  \"moods\": [\"sedih\", \"cemas\", \"kewalahan\"]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/symptom",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "symptom"
+              ]
+            },
+            "description": "### Description\n\n- This endpoint is used to create or update a daily symptom record and generate the latest alert result for that day.\n    \n- Authorization  \n    Bearer token required.\n    \n\n### Request Body\n\n- date (string, required): symptom date in YYYY-MM-DD.\n    \n- bleedings (array, required): bleeding records for the selected date.\n    \n- physical (object, required): physical condition data.\n    \n- moods (array, required): 1 to 3 selected moods.  \n    \n\nResponse Status Code  \n\n- 200 OK: symptom saved successfully.\n    \n- 400 Bad Request: invalid request body, invalid date, invalid enum value, invalid scale value, future date, immutable backdate, or invalid stored birth date.\n    \n- 401 Unauthorized: missing or invalid token.\n    \n\n### Test\n\n- Save symptom for today.\n    \n- Update symptom on the same day.\n    \n- Save symptom for past date once.\n    \n- Save symptom on same past date again\n    \n- Save payload that should result in safe alert.\n    \n- Save payload that should result in warning alert.\n    \n- Save payload that should result in danger alert."
+          },
+          "response": [
+            {
+              "name": "today (success)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"date\": \"2026-03-30\",\r\n  \"bleedings\": [\r\n    {\r\n      \"pad_usage\": \"<2h\",\r\n      \"clot_size\": \"large_coin\",\r\n      \"blood_color\": \"normal_red\",\r\n      \"smell\": \"mild\"\r\n    }\r\n  ],\r\n  \"physical\": {\r\n    \"temperature\": \">=38\",\r\n    \"dizziness\": 2,\r\n    \"headache\": 1,\r\n    \"weakness\": 5,\r\n    \"calf_pain\": 1,\r\n    \"abdominal_pain\": 2,\r\n    \"wound\": [\"bercak_darah\"],\r\n    \"urine_problems\": [\"nyeri_bak\"],\r\n    \"urine_color\": \"dark\",\r\n    \"breast_problems\": [\"bengkak\", \"kemerahan\", \"nyeri_puting\"],\r\n    \"swelling\": [\"wajah\"],\r\n    \"other_symptoms\": [\"kejang\", \"penglihatan_kabur\", \"muntah\", \"nyeri_ulu_hati\", \"nyeri_dada\", \"sesak_napas\"]\r\n  },\r\n  \"moods\": [\"sedih\", \"cemas\", \"kewalahan\"]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/symptom",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "symptom"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 05:12:44 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "276"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"date\": \"2026-03-30\",\n        \"alert\": {\n            \"level\": \"danger\",\n            \"confidence\": 75,\n            \"issues\": [\n                {\n                    \"code\": \"NEURO_SEVERE\",\n                    \"disease\": \"Gangguan saraf serius\",\n                    \"level\": \"danger\",\n                    \"description\": \"Kejang, sakit kepala, dan pusing\",\n                    \"symptoms\": [\n                        \"Kejang-kejang\",\n                        \"Sakit kepala\",\n                        \"Pusing\"\n                    ]\n                }\n            ]\n        }\n    }\n}"
+            },
+            {
+              "name": "pass date (success)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"date\": \"2026-03-29\",\r\n  \"bleedings\": [\r\n    {\r\n      \"pad_usage\": \"<2h\",\r\n      \"clot_size\": \"large_coin\",\r\n      \"blood_color\": \"normal_red\",\r\n      \"smell\": \"mild\"\r\n    }\r\n  ],\r\n  \"physical\": {\r\n    \"temperature\": \">=38\",\r\n    \"dizziness\": 4,\r\n    \"headache\": 4,\r\n    \"weakness\": 4,\r\n    \"calf_pain\": 5,\r\n    \"abdominal_pain\": 5,\r\n    \"wound\": [\"bercak_darah\"],\r\n    \"urine_problems\": [\"nyeri_bak\"],\r\n    \"urine_color\": \"dark\",\r\n    \"breast_problems\": [\"bengkak\", \"kemerahan\", \"nyeri_puting\"],\r\n    \"swelling\": [\"wajah\"],\r\n    \"other_symptoms\": [\"kejang\", \"penglihatan_kabur\", \"muntah\", \"nyeri_ulu_hati\", \"nyeri_dada\", \"sesak_napas\"]\r\n  },\r\n  \"moods\": [\"sedih\", \"cemas\", \"kewalahan\"]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/symptom",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "symptom"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 05:04:31 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "350"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"date\": \"2026-03-29\",\n        \"alert\": {\n            \"level\": \"danger\",\n            \"confidence\": 100,\n            \"issues\": [\n                {\n                    \"code\": \"PREEKLAMPSIA\",\n                    \"disease\": \"Preeklampsia pasca persalinan\",\n                    \"level\": \"danger\",\n                    \"description\": \"Sakit kepala parah dengan tanda preeklampsia\",\n                    \"symptoms\": [\n                        \"Sakit kepala parah (level 4)\",\n                        \"Penglihatan kabur\",\n                        \"Muntah\",\n                        \"Nyeri ulu hati\",\n                        \"Bengkak wajah\"\n                    ]\n                }\n            ]\n        }\n    }\n}"
+            },
+            {
+              "name": "wrong scale",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"date\": \"2026-03-29\",\r\n  \"bleedings\": [\r\n    {\r\n      \"pad_usage\": \"<2h\",\r\n      \"clot_size\": \"large_coin\",\r\n      \"blood_color\": \"normal_red\",\r\n      \"smell\": \"mild\"\r\n    }\r\n  ],\r\n  \"physical\": {\r\n    \"temperature\": \">=38\",\r\n    \"dizziness\": 2,\r\n    \"headache\": 1,\r\n    \"weakness\": 1,\r\n    \"calf_pain\": 2,\r\n    \"abdominal_pain\": 1,\r\n    \"wound\": [\"bercak_darah\"],\r\n    \"urine_problems\": [\"nyeri_bak\"],\r\n    \"urine_color\": \"dark\",\r\n    \"breast_problems\": [\"bengkak\", \"kemerahan\", \"nyeri_puting\"],\r\n    \"swelling\": [\"wajah\"],\r\n    \"other_symptoms\": [\"kejang\", \"penglihatan_kabur\", \"muntah\", \"nyeri_ulu_hati\", \"nyeri_dada\", \"sesak_napas\"]\r\n  },\r\n  \"moods\": [\"sedih\", \"cemas\", \"kewalahan\"]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/symptom",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "symptom"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 05:08:02 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "64"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"scale values must be between 1 and 5\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Symptom Update Same Day",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpvc2VzcGhAZ21haWwuY29tIiwiZXhwIjoxNzc0NzU0MTc1LCJuYW1lIjoiSm9zZXBoIiwicm9sZSI6InVzZXIiLCJ1c2VyX2lkIjoiOThlNjI5YTMtODY3YS00NjM3LWEyNTQtMjFjM2QxNmRjOGJlIn0.KvghpgSabWCugJAVSxxCcg1YhrSEzVo1MV7kvV9N6YY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"date\": \"2026-03-29\",\r\n  \"bleedings\": [\r\n    {\r\n      \"pad_usage\": \"2h\",\r\n      \"clot_size\": \"small_coin\",\r\n      \"blood_color\": \"normal_red\",\r\n      \"smell\": \"none\"\r\n    }\r\n  ],\r\n  \"physical\": {\r\n    \"temperature\": \"37\",\r\n    \"dizziness\": 2,\r\n    \"headache\": 1,\r\n    \"weakness\": 2,\r\n    \"calf_pain\": 1,\r\n    \"abdominal_pain\": 2,\r\n    \"wound\": [\"kering\"],\r\n    \"urine_problems\": [],\r\n    \"urine_color\": \"\",\r\n    \"breast_problems\": [\"nyeri_payudara\"],\r\n    \"swelling\": [\"kaki\"],\r\n    \"other_symptoms\": []\r\n  },\r\n  \"moods\": [\"tenang\", \"bersyukur\"]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/symptom/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "symptom",
+                ""
+              ]
+            },
+            "description": "### Description\n\n- This endpoint is used to create or update a daily symptom record and generate the latest alert result for that day.\n    \n- Authorization  \n    Bearer token required.\n    \n\n### Request Body\n\n- date (string, required): symptom date in YYYY-MM-DD.\n    \n- bleedings (array, required): bleeding records for the selected date.\n    \n- physical (object, required): physical condition data.\n    \n- moods (array, required): 1 to 3 selected moods.  \n    \n\nResponse Status Code  \n\n- 200 OK: symptom saved successfully.\n    \n- 400 Bad Request: invalid request body, invalid date, invalid enum value, invalid scale value, future date, immutable backdate, or invalid stored birth date.\n    \n- 401 Unauthorized: missing or invalid token.\n    \n\n### Test\n\n- Save symptom for today.\n    \n- Update symptom on the same day.\n    \n- Save symptom for past date once.\n    \n- Save symptom on same past date again\n    \n- Save payload that should result in safe alert.\n    \n- Save payload that should result in warning alert.\n    \n- Save payload that should result in danger alert."
+          },
+          "response": [
+            {
+              "name": "update symptom (success)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"date\": \"2026-03-30\",\r\n  \"bleedings\": [\r\n    {\r\n      \"pad_usage\": \"<2h\",\r\n      \"clot_size\": \"large_coin\",\r\n      \"blood_color\": \"normal_red\",\r\n      \"smell\": \"mild\"\r\n    }\r\n  ],\r\n  \"physical\": {\r\n    \"temperature\": \">=38\",\r\n    \"dizziness\": 2,\r\n    \"headache\": 1,\r\n    \"weakness\": 2,\r\n    \"calf_pain\": 1,\r\n    \"abdominal_pain\": 2,\r\n    \"wound\": [\"bercak_darah\"],\r\n    \"urine_problems\": [\"nyeri_bak\"],\r\n    \"urine_color\": \"dark\",\r\n    \"breast_problems\": [\"bengkak\", \"kemerahan\", \"nyeri_puting\"],\r\n    \"swelling\": [\"wajah\"],\r\n    \"other_symptoms\": [\"kejang\", \"penglihatan_kabur\", \"muntah\", \"nyeri_ulu_hati\", \"nyeri_dada\", \"sesak_napas\"]\r\n  },\r\n  \"moods\": [\"sedih\", \"cemas\", \"kewalahan\"]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/symptom",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "symptom"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 05:10:37 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "276"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"date\": \"2026-03-30\",\n        \"alert\": {\n            \"level\": \"danger\",\n            \"confidence\": 75,\n            \"issues\": [\n                {\n                    \"code\": \"NEURO_SEVERE\",\n                    \"disease\": \"Gangguan saraf serius\",\n                    \"level\": \"danger\",\n                    \"description\": \"Kejang, sakit kepala, dan pusing\",\n                    \"symptoms\": [\n                        \"Kejang-kejang\",\n                        \"Sakit kepala\",\n                        \"Pusing\"\n                    ]\n                }\n            ]\n        }\n    }\n}"
+            },
+            {
+              "name": "update past day (error)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"date\": \"2026-03-29\",\r\n  \"bleedings\": [\r\n    {\r\n      \"pad_usage\": \"<2h\",\r\n      \"clot_size\": \"large_coin\",\r\n      \"blood_color\": \"normal_red\",\r\n      \"smell\": \"mild\"\r\n    }\r\n  ],\r\n  \"physical\": {\r\n    \"temperature\": \">=38\",\r\n    \"dizziness\": 2,\r\n    \"headache\": 1,\r\n    \"weakness\": 5,\r\n    \"calf_pain\": 1,\r\n    \"abdominal_pain\": 2,\r\n    \"wound\": [\"bercak_darah\"],\r\n    \"urine_problems\": [\"nyeri_bak\"],\r\n    \"urine_color\": \"dark\",\r\n    \"breast_problems\": [\"bengkak\", \"kemerahan\", \"nyeri_puting\"],\r\n    \"swelling\": [\"wajah\"],\r\n    \"other_symptoms\": [\"kejang\", \"penglihatan_kabur\", \"muntah\", \"nyeri_ulu_hati\", \"nyeri_dada\", \"sesak_napas\"]\r\n  },\r\n  \"moods\": [\"sedih\", \"cemas\", \"kewalahan\"]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/symptom",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "symptom"
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 05:13:48 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "93"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"a record already exists for this date; past records are immutable\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Symptom Backdate",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpvc2VzcGhAZ21haWwuY29tIiwiZXhwIjoxNzc0NzU0MTc1LCJuYW1lIjoiSm9zZXBoIiwicm9sZSI6InVzZXIiLCJ1c2VyX2lkIjoiOThlNjI5YTMtODY3YS00NjM3LWEyNTQtMjFjM2QxNmRjOGJlIn0.KvghpgSabWCugJAVSxxCcg1YhrSEzVo1MV7kvV9N6YY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"date\": \"2026-03-27\",\r\n  \"bleedings\": [\r\n    {\r\n      \"pad_usage\": \"2h\",\r\n      \"clot_size\": \"small_coin\",\r\n      \"blood_color\": \"normal_red\",\r\n      \"smell\": \"none\"\r\n    }\r\n  ],\r\n  \"physical\": {\r\n    \"wound\": [\"kering\"]\r\n  },\r\n  \"moods\": [\"tenang\"]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/symptom/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "symptom",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"date\": \"2026-03-27\",\r\n  \"bleedings\": [\r\n    {\r\n      \"pad_usage\": \"2h\",\r\n      \"clot_size\": \"small_coin\",\r\n      \"blood_color\": \"normal_red\",\r\n      \"smell\": \"none\"\r\n    }\r\n  ],\r\n  \"physical\": {\r\n    \"wound\": [\"kering\"]\r\n  },\r\n  \"moods\": [\"tenang\"]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/symptom/",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "symptom",
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 05:17:12 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "227"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"date\": \"2026-03-27\",\n        \"alert\": {\n            \"level\": \"safe\",\n            \"confidence\": 100,\n            \"issues\": [\n                {\n                    \"code\": \"NORMAL\",\n                    \"disease\": \"Kondisi normal\",\n                    \"level\": \"safe\",\n                    \"description\": \"Tidak ada tanda bahaya yang terdeteksi\",\n                    \"symptoms\": []\n                }\n            ]\n        }\n    }\n}"
+            },
+            {
+              "name": "update same day",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"date\": \"2026-03-27\",\r\n  \"bleedings\": [\r\n    {\r\n      \"pad_usage\": \"2h\",\r\n      \"clot_size\": \"small_coin\",\r\n      \"blood_color\": \"normal_red\",\r\n      \"smell\": \"none\"\r\n    }\r\n  ],\r\n  \"physical\": {\r\n    \"wound\": [\"kering\"]\r\n  },\r\n  \"moods\": [\"tenang\"]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/symptom/",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "symptom",
+                    ""
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 05:18:04 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "93"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"a record already exists for this date; past records are immutable\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Symptom History",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpvc2VzcGhAZ21haWwuY29tIiwiZXhwIjoxNzc0NzU0MTc1LCJuYW1lIjoiSm9zZXBoIiwicm9sZSI6InVzZXIiLCJ1c2VyX2lkIjoiOThlNjI5YTMtODY3YS00NjM3LWEyNTQtMjFjM2QxNmRjOGJlIn0.KvghpgSabWCugJAVSxxCcg1YhrSEzVo1MV7kvV9N6YY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"date\": \"2026-03-28\",\r\n  \"bleedings\": [\r\n    {\r\n      \"pad_usage\": \"2h\",\r\n      \"clot_size\": \"small_coin\",\r\n      \"blood_color\": \"normal_red\",\r\n      \"smell\": \"none\"\r\n    }\r\n  ],\r\n  \"physical\": {\r\n    \"wound\": [\"kering\"]\r\n  },\r\n  \"moods\": [\"tenang\"]\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/symptom/history",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "symptom",
+                "history"
+              ]
+            },
+            "description": "### Description\n\n- This endpoint is used to retrieve symptom history and the latest alert snapshot for each recorded day.\n    \n- Authorization  \n    Bearer token required.\n    \n\n### Request Body\n\n- No request body.\n    \n\n### Response Status Code\n\n- 200 OK: symptom history retrieved successfully.\n    \n- 401 Unauthorized: missing or invalid token.\n    \n\n### Test\n\n- Get symptom history with valid token.\n    \n- Get symptom history without token."
+          },
+          "response": [
+            {
+              "name": "success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"date\": \"2026-03-28\",\r\n  \"bleedings\": [\r\n    {\r\n      \"pad_usage\": \"2h\",\r\n      \"clot_size\": \"small_coin\",\r\n      \"blood_color\": \"normal_red\",\r\n      \"smell\": \"none\"\r\n    }\r\n  ],\r\n  \"physical\": {\r\n    \"wound\": [\"kering\"]\r\n  },\r\n  \"moods\": [\"tenang\"]\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/symptom/history",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "symptom",
+                    "history"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 05:19:40 GMT"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": \"13d9d988-d373-4107-8abc-25127b059d9a\",\n            \"date\": \"2026-03-29\",\n            \"is_backdate\": false,\n            \"bleedings\": [\n                {\n                    \"pad_usage\": \"<2h\",\n                    \"clot_size\": \"large_coin\",\n                    \"blood_color\": \"normal_red\",\n                    \"smell\": \"mild\"\n                }\n            ],\n            \"physical\": {\n                \"temperature\": \">=38\",\n                \"dizziness\": 2,\n                \"headache\": 1,\n                \"weakness\": 5,\n                \"calf_pain\": 1,\n                \"abdominal_pain\": 2,\n                \"wound\": [\n                    \"bercak_darah\"\n                ],\n                \"urine_problems\": [\n                    \"nyeri_bak\"\n                ],\n                \"urine_color\": \"dark\",\n                \"breast_problems\": [\n                    \"bengkak\",\n                    \"kemerahan\",\n                    \"nyeri_puting\"\n                ],\n                \"swelling\": [\n                    \"wajah\"\n                ],\n                \"other_symptoms\": [\n                    \"kejang\",\n                    \"penglihatan_kabur\",\n                    \"muntah\",\n                    \"nyeri_ulu_hati\",\n                    \"nyeri_dada\",\n                    \"sesak_napas\"\n                ]\n            },\n            \"moods\": [\n                \"kewalahan\",\n                \"sedih\",\n                \"cemas\"\n            ],\n            \"alert\": {\n                \"level\": \"danger\",\n                \"confidence\": 75,\n                \"issues\": [\n                    {\n                        \"code\": \"NEURO_SEVERE\",\n                        \"disease\": \"Gangguan saraf serius\",\n                        \"level\": \"danger\",\n                        \"description\": \"Kejang, sakit kepala, dan pusing\",\n                        \"symptoms\": [\n                            \"Kejang-kejang\",\n                            \"Sakit kepala\",\n                            \"Pusing\"\n                        ]\n                    }\n                ]\n            },\n            \"created_at\": \"2026-03-30T05:10:06Z\",\n            \"updated_at\": \"2026-03-30T05:12:44Z\"\n        },\n        {\n            \"id\": \"0d8581eb-87f8-496d-ab96-569f15f8debd\",\n            \"date\": \"2026-03-28\",\n            \"is_backdate\": true,\n            \"bleedings\": [\n                {\n                    \"pad_usage\": \"<2h\",\n                    \"clot_size\": \"large_coin\",\n                    \"blood_color\": \"normal_red\",\n                    \"smell\": \"mild\"\n                },\n                {\n                    \"pad_usage\": \"<2h\",\n                    \"clot_size\": \"large_coin\",\n                    \"blood_color\": \"normal_red\",\n                    \"smell\": \"mild\"\n                }\n            ],\n            \"physical\": {\n                \"temperature\": \">=38\",\n                \"dizziness\": 4,\n                \"headache\": 4,\n                \"weakness\": 4,\n                \"calf_pain\": 5,\n                \"abdominal_pain\": 5,\n                \"wound\": [\n                    \"bercak_darah\"\n                ],\n                \"urine_problems\": [\n                    \"nyeri_bak\"\n                ],\n                \"urine_color\": \"dark\",\n                \"breast_problems\": [\n                    \"bengkak\",\n                    \"kemerahan\",\n                    \"nyeri_puting\"\n                ],\n                \"swelling\": [\n                    \"wajah\"\n                ],\n                \"other_symptoms\": [\n                    \"kejang\",\n                    \"penglihatan_kabur\",\n                    \"muntah\",\n                    \"nyeri_ulu_hati\",\n                    \"nyeri_dada\",\n                    \"sesak_napas\"\n                ]\n            },\n            \"moods\": [\n                \"cemas\",\n                \"sedih\",\n                \"sedih\",\n                \"kewalahan\",\n                \"kewalahan\",\n                \"cemas\"\n            ],\n            \"alert\": {\n                \"level\": \"danger\",\n                \"confidence\": 100,\n                \"issues\": [\n                    {\n                        \"code\": \"PREEKLAMPSIA\",\n                        \"disease\": \"Preeklampsia pasca persalinan\",\n                        \"level\": \"danger\",\n                        \"description\": \"Sakit kepala parah dengan tanda preeklampsia\",\n                        \"symptoms\": [\n                            \"Sakit kepala parah (level 4)\",\n                            \"Penglihatan kabur\",\n                            \"Muntah\",\n                            \"Nyeri ulu hati\",\n                            \"Bengkak wajah\"\n                        ]\n                    }\n                ]\n            },\n            \"created_at\": \"2026-03-30T05:04:31Z\",\n            \"updated_at\": \"2026-03-30T05:04:31Z\"\n        },\n        {\n            \"id\": \"d3290608-6b93-4f41-bcb9-c6c9b92d37fb\",\n            \"date\": \"2026-03-26\",\n            \"is_backdate\": true,\n            \"bleedings\": [\n                {\n                    \"pad_usage\": \"2h\",\n                    \"clot_size\": \"small_coin\",\n                    \"blood_color\": \"normal_red\",\n                    \"smell\": \"none\"\n                },\n                {\n                    \"pad_usage\": \"2h\",\n                    \"clot_size\": \"small_coin\",\n                    \"blood_color\": \"normal_red\",\n                    \"smell\": \"none\"\n                }\n            ],\n            \"physical\": {\n                \"temperature\": \"\",\n                \"dizziness\": null,\n                \"headache\": null,\n                \"weakness\": null,\n                \"calf_pain\": null,\n                \"abdominal_pain\": null,\n                \"wound\": [\n                    \"kering\"\n                ],\n                \"urine_problems\": null,\n                \"urine_color\": \"\",\n                \"breast_problems\": null,\n                \"swelling\": null,\n                \"other_symptoms\": null\n            },\n            \"moods\": [\n                \"tenang\",\n                \"tenang\"\n            ],\n            \"alert\": {\n                \"level\": \"safe\",\n                \"confidence\": 100,\n                \"issues\": [\n                    {\n                        \"code\": \"NORMAL\",\n                        \"disease\": \"Kondisi normal\",\n                        \"level\": \"safe\",\n                        \"description\": \"Tidak ada tanda bahaya yang terdeteksi\",\n                        \"symptoms\": []\n                    }\n                ]\n            },\n            \"created_at\": \"2026-03-30T05:17:12Z\",\n            \"updated_at\": \"2026-03-30T05:17:12Z\"\n        }\n    ]\n}"
+            },
+            {
+              "name": "without token",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"date\": \"2026-03-28\",\r\n  \"bleedings\": [\r\n    {\r\n      \"pad_usage\": \"2h\",\r\n      \"clot_size\": \"small_coin\",\r\n      \"blood_color\": \"normal_red\",\r\n      \"smell\": \"none\"\r\n    }\r\n  ],\r\n  \"physical\": {\r\n    \"wound\": [\"kering\"]\r\n  },\r\n  \"moods\": [\"tenang\"]\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/symptom/history",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "symptom",
+                    "history"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 05:20:31 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "56"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"authorization header missing\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Symptom Detail",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpvc2VzcGhAZ21haWwuY29tIiwiZXhwIjoxNzc0NzU0MTc1LCJuYW1lIjoiSm9zZXBoIiwicm9sZSI6InVzZXIiLCJ1c2VyX2lkIjoiOThlNjI5YTMtODY3YS00NjM3LWEyNTQtMjFjM2QxNmRjOGJlIn0.KvghpgSabWCugJAVSxxCcg1YhrSEzVo1MV7kvV9N6YY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"date\": \"2026-03-28\",\r\n  \"bleedings\": [\r\n    {\r\n      \"pad_usage\": \"2h\",\r\n      \"clot_size\": \"small_coin\",\r\n      \"blood_color\": \"normal_red\",\r\n      \"smell\": \"none\"\r\n    }\r\n  ],\r\n  \"physical\": {\r\n    \"wound\": [\"kering\"]\r\n  },\r\n  \"moods\": [\"tenang\"]\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/symptom/2026-03-29",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "symptom",
+                "2026-03-29"
+              ]
+            },
+            "description": "### Description\n\n- This endpoint is used to retrieve symptom detail for a specific date.\n    \n- Authorization  \n    Bearer token required.\n    \n\n### Request Body\n\n- No request body.\n    \n\n### Response Status Code\n\n- 200 OK: symptom detail retrieved successfully.\n    \n- 400 Bad Request: invalid date format.\n    \n- 401 Unauthorized: missing or invalid token.\n    \n- 404 Not Found: symptom record not found.\n    \n\n### Test\n\n- Get symptom detail with valid date.\n    \n- Get symptom detail with invalid date format.\n    \n- Get symptom detail for missing record."
+          },
+          "response": [
+            {
+              "name": "success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"date\": \"2026-03-28\",\r\n  \"bleedings\": [\r\n    {\r\n      \"pad_usage\": \"2h\",\r\n      \"clot_size\": \"small_coin\",\r\n      \"blood_color\": \"normal_red\",\r\n      \"smell\": \"none\"\r\n    }\r\n  ],\r\n  \"physical\": {\r\n    \"wound\": [\"kering\"]\r\n  },\r\n  \"moods\": [\"tenang\"]\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/symptom/2026-03-29",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "symptom",
+                    "2026-03-29"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 05:21:46 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1117"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": \"0d8581eb-87f8-496d-ab96-569f15f8debd\",\n        \"date\": \"2026-03-28\",\n        \"is_backdate\": true,\n        \"bleedings\": [\n            {\n                \"pad_usage\": \"<2h\",\n                \"clot_size\": \"large_coin\",\n                \"blood_color\": \"normal_red\",\n                \"smell\": \"mild\"\n            },\n            {\n                \"pad_usage\": \"<2h\",\n                \"clot_size\": \"large_coin\",\n                \"blood_color\": \"normal_red\",\n                \"smell\": \"mild\"\n            }\n        ],\n        \"physical\": {\n            \"temperature\": \">=38\",\n            \"dizziness\": 4,\n            \"headache\": 4,\n            \"weakness\": 4,\n            \"calf_pain\": 5,\n            \"abdominal_pain\": 5,\n            \"wound\": [\n                \"bercak_darah\"\n            ],\n            \"urine_problems\": [\n                \"nyeri_bak\"\n            ],\n            \"urine_color\": \"dark\",\n            \"breast_problems\": [\n                \"bengkak\",\n                \"kemerahan\",\n                \"nyeri_puting\"\n            ],\n            \"swelling\": [\n                \"wajah\"\n            ],\n            \"other_symptoms\": [\n                \"kejang\",\n                \"penglihatan_kabur\",\n                \"muntah\",\n                \"nyeri_ulu_hati\",\n                \"nyeri_dada\",\n                \"sesak_napas\"\n            ]\n        },\n        \"moods\": [\n            \"cemas\",\n            \"sedih\",\n            \"sedih\",\n            \"kewalahan\",\n            \"kewalahan\",\n            \"cemas\"\n        ],\n        \"alert\": {\n            \"level\": \"danger\",\n            \"confidence\": 100,\n            \"issues\": [\n                {\n                    \"code\": \"PREEKLAMPSIA\",\n                    \"disease\": \"Preeklampsia pasca persalinan\",\n                    \"level\": \"danger\",\n                    \"description\": \"Sakit kepala parah dengan tanda preeklampsia\",\n                    \"symptoms\": [\n                        \"Sakit kepala parah (level 4)\",\n                        \"Penglihatan kabur\",\n                        \"Muntah\",\n                        \"Nyeri ulu hati\",\n                        \"Bengkak wajah\"\n                    ]\n                }\n            ]\n        },\n        \"created_at\": \"2026-03-30T05:04:31Z\",\n        \"updated_at\": \"2026-03-30T05:04:31Z\"\n    }\n}"
+            },
+            {
+              "name": "missing record",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"date\": \"2026-03-28\",\r\n  \"bleedings\": [\r\n    {\r\n      \"pad_usage\": \"2h\",\r\n      \"clot_size\": \"small_coin\",\r\n      \"blood_color\": \"normal_red\",\r\n      \"smell\": \"none\"\r\n    }\r\n  ],\r\n  \"physical\": {\r\n    \"wound\": [\"kering\"]\r\n  },\r\n  \"moods\": [\"tenang\"]\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/symptom/2026-03-20",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "symptom",
+                    "2026-03-20"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 05:22:35 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "52"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"symptom record not found\"\n}"
+            },
+            {
+              "name": "invalid date format",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"date\": \"2026-03-28\",\r\n  \"bleedings\": [\r\n    {\r\n      \"pad_usage\": \"2h\",\r\n      \"clot_size\": \"small_coin\",\r\n      \"blood_color\": \"normal_red\",\r\n      \"smell\": \"none\"\r\n    }\r\n  ],\r\n  \"physical\": {\r\n    \"wound\": [\"kering\"]\r\n  },\r\n  \"moods\": [\"tenang\"]\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/symptom/2026-13-20",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "symptom",
+                    "2026-13-20"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 05:24:08 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "64"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"invalid date format - use YYYY-MM-DD\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Psychologists",
+      "item": [
+        {
+          "name": "List Psychologists",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpvc2VzcGhAZ21haWwuY29tIiwiZXhwIjoxNzc0NzU0MTc1LCJuYW1lIjoiSm9zZXBoIiwicm9sZSI6InVzZXIiLCJ1c2VyX2lkIjoiOThlNjI5YTMtODY3YS00NjM3LWEyNTQtMjFjM2QxNmRjOGJlIn0.KvghpgSabWCugJAVSxxCcg1YhrSEzVo1MV7kvV9N6YY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"date\": \"2026-03-28\",\r\n  \"bleedings\": [\r\n    {\r\n      \"pad_usage\": \"2h\",\r\n      \"clot_size\": \"small_coin\",\r\n      \"blood_color\": \"normal_red\",\r\n      \"smell\": \"none\"\r\n    }\r\n  ],\r\n  \"physical\": {\r\n    \"wound\": [\"kering\"]\r\n  },\r\n  \"moods\": [\"tenang\"]\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/psychologists/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "psychologists",
+                ""
+              ]
+            },
+            "description": "### Description\n\n- This endpoint is used to retrieve the list of available psychologists.\n    \n- Authorization  \n    Bearer token required.\n    \n\n### Request Body\n\n- No request body.\n    \n\n### Response Status Code\n\n- 200 OK: psychologist list retrieved successfully.\n    \n- 401 Unauthorized: missing or invalid token.\n    \n\n### Test\n\n- Get psychologist list with valid token.\n    \n- Get psychologist list without token."
+          },
+          "response": [
+            {
+              "name": "success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"date\": \"2026-03-28\",\r\n  \"bleedings\": [\r\n    {\r\n      \"pad_usage\": \"2h\",\r\n      \"clot_size\": \"small_coin\",\r\n      \"blood_color\": \"normal_red\",\r\n      \"smell\": \"none\"\r\n    }\r\n  ],\r\n  \"physical\": {\r\n    \"wound\": [\"kering\"]\r\n  },\r\n  \"moods\": [\"tenang\"]\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/psychologists/",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "psychologists",
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 05:25:40 GMT"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": \"80eaa6f4-1990-4e4f-8249-87a2a8493669\",\n            \"name\": \"Dr. Andrew Handi, Sp.KJ\",\n            \"title\": \"Sp. Jiwa\",\n            \"job\": \"Psikolog Klinis\",\n            \"experience_years\": 16,\n            \"price_idr\": 150000,\n            \"photo_url\": \"https://ntterfxefoklfcsmkgmy.supabase.co/storage/v1/object/public/photos/doctors/andrew_handi.jpg\"\n        },\n        {\n            \"id\": \"59d6771f-9b95-4108-867a-1f14e39cdd80\",\n            \"name\": \"Dr. Andy Dharmawangsa, Sp.KJ\",\n            \"title\": \"Sp. Jiwa\",\n            \"job\": \"Psikolog Klinis\",\n            \"experience_years\": 15,\n            \"price_idr\": 200000,\n            \"photo_url\": \"https://ntterfxefoklfcsmkgmy.supabase.co/storage/v1/object/public/photos/doctors/andy_dharmawangsa.jpg\"\n        },\n        {\n            \"id\": \"f44cc770-374a-4ad9-9277-16b94573d07f\",\n            \"name\": \"Dr. Anna Amaliana, Sp.KJ\",\n            \"title\": \"Sp. Jiwa\",\n            \"job\": \"Psikolog Klinis\",\n            \"experience_years\": 24,\n            \"price_idr\": 180000,\n            \"photo_url\": \"https://ntterfxefoklfcsmkgmy.supabase.co/storage/v1/object/public/photos/doctors/anna_amaliana.jpg\"\n        },\n        {\n            \"id\": \"3251543f-fec8-4e0e-a07f-e481f3b6bbba\",\n            \"name\": \"Dr. Bayu Ariatama, M.Ked., Sp.KJ\",\n            \"title\": \"Sp. Jiwa\",\n            \"job\": \"Psikolog Klinis\",\n            \"experience_years\": 14,\n            \"price_idr\": 175000,\n            \"photo_url\": \"https://ntterfxefoklfcsmkgmy.supabase.co/storage/v1/object/public/photos/doctors/bayu_ariatama.jpg\"\n        },\n        {\n            \"id\": \"31c59902-3fe1-4e09-ab06-6a46da96b943\",\n            \"name\": \"Dr. Benny Ardjil, Sp.KJ\",\n            \"title\": \"Sp. Jiwa\",\n            \"job\": \"Psikolog Klinis\",\n            \"experience_years\": 50,\n            \"price_idr\": 185000,\n            \"photo_url\": \"https://ntterfxefoklfcsmkgmy.supabase.co/storage/v1/object/public/photos/doctors/benny_ardjil.jpg\"\n        },\n        {\n            \"id\": \"9f46a3e6-7e22-4243-ac23-ef3809554a57\",\n            \"name\": \"Dr. Eden, Sp.KJ\",\n            \"title\": \"Sp. Jiwa\",\n            \"job\": \"Psikolog Klinis\",\n            \"experience_years\": 15,\n            \"price_idr\": 175000,\n            \"photo_url\": \"https://ntterfxefoklfcsmkgmy.supabase.co/storage/v1/object/public/photos/doctors/eden.jpg\"\n        },\n        {\n            \"id\": \"c7c1fb64-48f5-4d78-86ad-f84377a38869\",\n            \"name\": \"Dr. Fitriyana Astuti, Sp.KJ\",\n            \"title\": \"Sp. Jiwa\",\n            \"job\": \"Psikolog Klinis\",\n            \"experience_years\": 23,\n            \"price_idr\": 170000,\n            \"photo_url\": \"https://ntterfxefoklfcsmkgmy.supabase.co/storage/v1/object/public/photos/doctors/fitriyana_astuti.jpg\"\n        },\n        {\n            \"id\": \"990f062f-64dd-4e7f-85b4-7edb86f89e5e\",\n            \"name\": \"Dr. Ichdinavia Harsaya, Sp.KJ\",\n            \"title\": \"Sp. Jiwa\",\n            \"job\": \"Psikolog Klinis\",\n            \"experience_years\": 22,\n            \"price_idr\": 165000,\n            \"photo_url\": \"https://ntterfxefoklfcsmkgmy.supabase.co/storage/v1/object/public/photos/doctors/ichdinavia_harsaya.jpg\"\n        },\n        {\n            \"id\": \"f47d819b-22c0-4533-977f-02935cf12cfa\",\n            \"name\": \"Dr. Myra M.Kes, Sp.KJ\",\n            \"title\": \"Sp. Jiwa\",\n            \"job\": \"Psikolog Klinis\",\n            \"experience_years\": 17,\n            \"price_idr\": 190000,\n            \"photo_url\": \"https://ntterfxefoklfcsmkgmy.supabase.co/storage/v1/object/public/photos/doctors/myra.jpg\"\n        },\n        {\n            \"id\": \"ffcf913b-7d3c-4936-9d69-a57fb8af9336\",\n            \"name\": \"Dr. Reinaldo Batara, Sp.KJ\",\n            \"title\": \"Sp. Jiwa\",\n            \"job\": \"Psikolog Klinis\",\n            \"experience_years\": 15,\n            \"price_idr\": 185000,\n            \"photo_url\": \"https://ntterfxefoklfcsmkgmy.supabase.co/storage/v1/object/public/photos/doctors/reinaldo_batara.jpg\"\n        }\n    ]\n}"
+            },
+            {
+              "name": "without token",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"date\": \"2026-03-28\",\r\n  \"bleedings\": [\r\n    {\r\n      \"pad_usage\": \"2h\",\r\n      \"clot_size\": \"small_coin\",\r\n      \"blood_color\": \"normal_red\",\r\n      \"smell\": \"none\"\r\n    }\r\n  ],\r\n  \"physical\": {\r\n    \"wound\": [\"kering\"]\r\n  },\r\n  \"moods\": [\"tenang\"]\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/psychologists/",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "psychologists",
+                    ""
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 05:26:24 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "56"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"authorization header missing\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Psychologist Detail",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpvc2VzcGhAZ21haWwuY29tIiwiZXhwIjoxNzc0NzU0MTc1LCJuYW1lIjoiSm9zZXBoIiwicm9sZSI6InVzZXIiLCJ1c2VyX2lkIjoiOThlNjI5YTMtODY3YS00NjM3LWEyNTQtMjFjM2QxNmRjOGJlIn0.KvghpgSabWCugJAVSxxCcg1YhrSEzVo1MV7kvV9N6YY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"date\": \"2026-03-28\",\r\n  \"bleedings\": [\r\n    {\r\n      \"pad_usage\": \"2h\",\r\n      \"clot_size\": \"small_coin\",\r\n      \"blood_color\": \"normal_red\",\r\n      \"smell\": \"none\"\r\n    }\r\n  ],\r\n  \"physical\": {\r\n    \"wound\": [\"kering\"]\r\n  },\r\n  \"moods\": [\"tenang\"]\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/psychologists/80eaa6f4-1990-4e4f-8249-87a2a8493669",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "psychologists",
+                "80eaa6f4-1990-4e4f-8249-87a2a8493669"
+              ]
+            },
+            "description": "### Description\n\n- This endpoint is used to retrieve psychologist detail and available schedules.\n    \n- Authorization  \n    Bearer token required.\n    \n\n### Request Body\n\n- No request body.\n    \n\n### Response Status Code\n\n- 200 OK: psychologist detail retrieved successfully.\n    \n- 400 Bad Request: invalid psychologist id.\n    \n- 401 Unauthorized: missing or invalid token.\n    \n- 404 Not Found: psychologist not found.\n    \n\n### Test\n\n- Get valid psychologist detail.\n    \n- Get psychologist detail with invalid id.\n    \n- Get psychologist detail for missing psychologist."
+          },
+          "response": [
+            {
+              "name": "success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"date\": \"2026-03-28\",\r\n  \"bleedings\": [\r\n    {\r\n      \"pad_usage\": \"2h\",\r\n      \"clot_size\": \"small_coin\",\r\n      \"blood_color\": \"normal_red\",\r\n      \"smell\": \"none\"\r\n    }\r\n  ],\r\n  \"physical\": {\r\n    \"wound\": [\"kering\"]\r\n  },\r\n  \"moods\": [\"tenang\"]\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/psychologists/80eaa6f4-1990-4e4f-8249-87a2a8493669",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "psychologists",
+                    "80eaa6f4-1990-4e4f-8249-87a2a8493669"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 05:27:39 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "591"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": \"80eaa6f4-1990-4e4f-8249-87a2a8493669\",\n        \"name\": \"Dr. Andrew Handi, Sp.KJ\",\n        \"title\": \"Sp. Jiwa\",\n        \"job\": \"Psikolog Klinis\",\n        \"experience_years\": 16,\n        \"price_idr\": 150000,\n        \"photo_url\": \"https://ntterfxefoklfcsmkgmy.supabase.co/storage/v1/object/public/photos/doctors/andrew_handi.jpg\",\n        \"schedules\": [\n            {\n                \"day_of_week\": \"Senin\",\n                \"start_time\": \"19.00\",\n                \"end_time\": \"20.00\",\n                \"label\": \"Senin, 19.00-20.00\"\n            },\n            {\n                \"day_of_week\": \"Jumat\",\n                \"start_time\": \"20.00\",\n                \"end_time\": \"21.00\",\n                \"label\": \"Jumat, 20.00-21.00\"\n            },\n            {\n                \"day_of_week\": \"Senin\",\n                \"start_time\": \"20.00\",\n                \"end_time\": \"21.00\",\n                \"label\": \"Senin, 20.00-21.00\"\n            }\n        ]\n    }\n}"
+            },
+            {
+              "name": "invalid id",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"date\": \"2026-03-28\",\r\n  \"bleedings\": [\r\n    {\r\n      \"pad_usage\": \"2h\",\r\n      \"clot_size\": \"small_coin\",\r\n      \"blood_color\": \"normal_red\",\r\n      \"smell\": \"none\"\r\n    }\r\n  ],\r\n  \"physical\": {\r\n    \"wound\": [\"kering\"]\r\n  },\r\n  \"moods\": [\"tenang\"]\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/psychologists/80eaa6f4-1990-4e4f-8249-87a2a849366",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "psychologists",
+                    "80eaa6f4-1990-4e4f-8249-87a2a849366"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 05:28:38 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "51"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"invalid psychologist id\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Booking WhatsApp",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpvc2VzcGhAZ21haWwuY29tIiwiZXhwIjoxNzc0NzU0MTc1LCJuYW1lIjoiSm9zZXBoIiwicm9sZSI6InVzZXIiLCJ1c2VyX2lkIjoiOThlNjI5YTMtODY3YS00NjM3LWEyNTQtMjFjM2QxNmRjOGJlIn0.KvghpgSabWCugJAVSxxCcg1YhrSEzVo1MV7kvV9N6YY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"selected_slot\": \"Jumat, 20.00-21.00\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/psychologists/80eaa6f4-1990-4e4f-8249-87a2a8493669/booking",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "psychologists",
+                "80eaa6f4-1990-4e4f-8249-87a2a8493669",
+                "booking"
+              ]
+            },
+            "description": "### Description\n\n- This endpoint is used to generate a WhatsApp booking template for the selected psychologist schedule.\n    \n- Authorization  \n    Bearer token required.\n    \n\n### Request Body\n\n- selected_slot (string, required): selected schedule label from psychologist detail.\n    \n\n### Response Status Code\n\n- 200 OK: booking template generated successfully.\n    \n- 400 Bad Request: invalid psychologist id, invalid request body, or unavailable schedule slot.\n    \n- 401 Unauthorized: missing or invalid token.\n    \n- 404 Not Found: psychologist not found.\n    \n- 500 Internal Server Error: WhatsApp admin number is not configured.\n    \n\n### Test\n\n- Book psychologist with valid slot.\n    \n- Book psychologist with invalid slot.\n    \n- Book psychologist without token."
+          },
+          "response": [
+            {
+              "name": "success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"selected_slot\": \"Jumat, 20.00-21.00\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/psychologists/80eaa6f4-1990-4e4f-8249-87a2a8493669/booking",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "psychologists",
+                    "80eaa6f4-1990-4e4f-8249-87a2a8493669",
+                    "booking"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 05:30:18 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "751"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"whatsapp_url\": \"https://wa.me/6281326658521?text=Halo+Admin%2C+saya+ingin+booking+konsultasi+dengan+dokter+Dr.+Andrew+Handi%2C+Sp.KJ%0A%0ANama%3A+elaine%0AEmail%3A+audrey%40gmail.com%0AKeluhan+utama%3A+%0ARiwayat+penyakit+%28jika+ada%29%3A+%0ATanggal+%26+jam+yang+diinginkan+%28pilih+satu%29%0A-+Jumat%2C+20.00-21.00%0A%0AMohon+info+jadwal+yang+tersedia+dan+cara+pembayarannya.+Terima+kasih.\",\n        \"message_preview\": \"Halo Admin, saya ingin booking konsultasi dengan dokter Dr. Andrew Handi, Sp.KJ\\n\\nNama: elaine\\nEmail: audrey@gmail.com\\nKeluhan utama: \\nRiwayat penyakit (jika ada): \\nTanggal & jam yang diinginkan (pilih satu)\\n- Jumat, 20.00-21.00\\n\\nMohon info jadwal yang tersedia dan cara pembayarannya. Terima kasih.\"\n    }\n}"
+            },
+            {
+              "name": "invalid token",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"selected_slot\": \"Jumat, 20.00-21.00\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/psychologists/80eaa6f4-1990-4e4f-8249-872a8493669/booking",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "psychologists",
+                    "80eaa6f4-1990-4e4f-8249-872a8493669",
+                    "booking"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 05:31:26 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "52"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"invalid or expired token\"\n}"
+            },
+            {
+              "name": "invalid slot",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"selected_slot\": \"Jumat, 20.00-.00\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/psychologists/80eaa6f4-1990-4e4f-8249-87a2a8493669/booking",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "psychologists",
+                    "80eaa6f4-1990-4e4f-8249-87a2a8493669",
+                    "booking"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 05:34:16 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "73"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"schedule slot not available: Jumat, 20.00-.00\"\n}"
+            },
+            {
+              "name": "invalid psychologist id",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"selected_slot\": \"Jumat, 20.00-12.00\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/psychologists/80eaa6f4-1990-4e4f-8249-87a2a849366",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "psychologists",
+                    "80eaa6f4-1990-4e4f-8249-87a2a849366"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 05:35:34 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "51"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"invalid psychologist id\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Jadwal Psikolog",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpvc2VzcGhAZ21haWwuY29tIiwiZXhwIjoxNzc0NzU0MTc1LCJuYW1lIjoiSm9zZXBoIiwicm9sZSI6InVzZXIiLCJ1c2VyX2lkIjoiOThlNjI5YTMtODY3YS00NjM3LWEyNTQtMjFjM2QxNmRjOGJlIn0.KvghpgSabWCugJAVSxxCcg1YhrSEzVo1MV7kvV9N6YY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"date\": \"2026-03-28\",\r\n  \"bleedings\": [\r\n    {\r\n      \"pad_usage\": \"2h\",\r\n      \"clot_size\": \"small_coin\",\r\n      \"blood_color\": \"normal_red\",\r\n      \"smell\": \"none\"\r\n    }\r\n  ],\r\n  \"physical\": {\r\n    \"wound\": [\"kering\"]\r\n  },\r\n  \"moods\": [\"tenang\"]\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/psychologists/80eaa6f4-1990-4e4f-8249-87a2a8493669",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "psychologists",
+                "80eaa6f4-1990-4e4f-8249-87a2a8493669"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"date\": \"2026-03-28\",\r\n  \"bleedings\": [\r\n    {\r\n      \"pad_usage\": \"2h\",\r\n      \"clot_size\": \"small_coin\",\r\n      \"blood_color\": \"normal_red\",\r\n      \"smell\": \"none\"\r\n    }\r\n  ],\r\n  \"physical\": {\r\n    \"wound\": [\"kering\"]\r\n  },\r\n  \"moods\": [\"tenang\"]\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/psychologists/80eaa6f4-1990-4e4f-8249-87a2a8493669",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "psychologists",
+                    "80eaa6f4-1990-4e4f-8249-87a2a8493669"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 05:37:03 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "591"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": \"80eaa6f4-1990-4e4f-8249-87a2a8493669\",\n        \"name\": \"Dr. Andrew Handi, Sp.KJ\",\n        \"title\": \"Sp. Jiwa\",\n        \"job\": \"Psikolog Klinis\",\n        \"experience_years\": 16,\n        \"price_idr\": 150000,\n        \"photo_url\": \"https://ntterfxefoklfcsmkgmy.supabase.co/storage/v1/object/public/photos/doctors/andrew_handi.jpg\",\n        \"schedules\": [\n            {\n                \"day_of_week\": \"Senin\",\n                \"start_time\": \"19.00\",\n                \"end_time\": \"20.00\",\n                \"label\": \"Senin, 19.00-20.00\"\n            },\n            {\n                \"day_of_week\": \"Jumat\",\n                \"start_time\": \"20.00\",\n                \"end_time\": \"21.00\",\n                \"label\": \"Jumat, 20.00-21.00\"\n            },\n            {\n                \"day_of_week\": \"Senin\",\n                \"start_time\": \"20.00\",\n                \"end_time\": \"21.00\",\n                \"label\": \"Senin, 20.00-21.00\"\n            }\n        ]\n    }\n}"
+            },
+            {
+              "name": "empty token",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"date\": \"2026-03-28\",\r\n  \"bleedings\": [\r\n    {\r\n      \"pad_usage\": \"2h\",\r\n      \"clot_size\": \"small_coin\",\r\n      \"blood_color\": \"normal_red\",\r\n      \"smell\": \"none\"\r\n    }\r\n  ],\r\n  \"physical\": {\r\n    \"wound\": [\"kering\"]\r\n  },\r\n  \"moods\": [\"tenang\"]\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/psychologists/80eaa6f4-1990-4e4f-8249-87a2a8493669",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "psychologists",
+                    "80eaa6f4-1990-4e4f-8249-87a2a8493669"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 05:37:59 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "56"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"authorization header missing\"\n}"
+            },
+            {
+              "name": "invalid id",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"date\": \"2026-03-28\",\r\n  \"bleedings\": [\r\n    {\r\n      \"pad_usage\": \"2h\",\r\n      \"clot_size\": \"small_coin\",\r\n      \"blood_color\": \"normal_red\",\r\n      \"smell\": \"none\"\r\n    }\r\n  ],\r\n  \"physical\": {\r\n    \"wound\": [\"kering\"]\r\n  },\r\n  \"moods\": [\"tenang\"]\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/psychologists/80eaa6f4-1990-4e4f-8249-87a2a849366",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "psychologists",
+                    "80eaa6f4-1990-4e4f-8249-87a2a849366"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 05:39:02 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "51"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"invalid psychologist id\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Photo",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpvc2VzcGhAZ21haWwuY29tIiwiZXhwIjoxNzc0NzU1MTQ0LCJuYW1lIjoiSmF5Iiwicm9sZSI6InVzZXIiLCJ1c2VyX2lkIjoiOThlNjI5YTMtODY3YS00NjM3LWEyNTQtMjFjM2QxNmRjOGJlIn0.oHWofYOR9nMap4SyPS76TV9Uuvksj6J1G39nUAg4icE",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"photo_url\": \"https://ntterfxefoklfcsmkgmy.supabase.co/storage/v1/object/public/photos/doctors/andrew_handi.jpg\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/psychologists/80eaa6f4-1990-4e4f-8249-87a2a8493669/photo",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "psychologists",
+                "80eaa6f4-1990-4e4f-8249-87a2a8493669",
+                "photo"
+              ]
+            },
+            "description": "### Description\n\n- This endpoint is used to update the photo URL of a psychologist.\n    \n- Authorization  \n    Bearer token required.\n    \n\n### Request Body\n\n- photo_url (string, required): psychologist profile image URL.  \n    \n\nResponse Status Code  \n\n- 200 OK: photo updated successfully.\n    \n- 400 Bad Request: invalid psychologist id, invalid request body, or empty photo URL.\n    \n- 401 Unauthorized: missing or invalid token.\n    \n- 404 Not Found: psychologist not found.\n    \n\n### Test\n\n- Update photo with valid URL.\n    \n- Update photo with empty URL.\n    \n- Update photo with invalid psychologist id."
+          },
+          "response": [
+            {
+              "name": "success",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"photo_url\": \"https://ntterfxefoklfcsmkgmy.supabase.co/storage/v1/object/public/photos/doctors/andrew_handi.jpg\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/psychologists/80eaa6f4-1990-4e4f-8249-87a2a8493669/photo",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "psychologists",
+                    "80eaa6f4-1990-4e4f-8249-87a2a8493669",
+                    "photo"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 05:40:35 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "39"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": \"photo updated\"\n}"
+            },
+            {
+              "name": "invalid url",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"photo_url: \"https://ntterfxefoklfcsmkgmy.supaase.co/storage/v1/object/public/photos/doctors/andrew_handi.jpg\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/psychologists/80eaa6f4-1990-4e4f-8249-87a2a8493669/photo",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "psychologists",
+                    "80eaa6f4-1990-4e4f-8249-87a2a8493669",
+                    "photo"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Mar 2026 05:41:32 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "49"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"photo_url is required\"\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS psychologist_schedules;
+DROP TABLE IF EXISTS psychologists;
+DROP TABLE IF EXISTS mood_logs;
+DROP TABLE IF EXISTS bleeding_logs;
+DROP TABLE IF EXISTS symptom_logs;
+DROP TABLE IF EXISTS sleep_sessions;
+DROP TABLE IF EXISTS refresh_tokens;
+DROP TABLE IF EXISTS baby;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS alert_rules;

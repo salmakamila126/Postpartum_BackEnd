@@ -1,0 +1,12 @@
+.git
+.gitignore
+.env
+.env.example
+.idea
+Postpartum_BackEnd_Old
+postman
+tmp
+bin
+coverage.*
+*.coverprofile
+*.log
